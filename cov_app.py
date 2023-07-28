@@ -79,7 +79,7 @@ st.sidebar.header("MENU")
 url = 'https://www.gmail.com/'
 logo = Image.open(r'C:/Users/dell/Desktop/logoUvs/uvs.JPEG')
 with st.sidebar:
-    choose = option_menu("IA de Segmentation et de Classification du COVID-19 Université virteulle du senegal", ["A propos", "Classification", "Prediction covid-19 xray", "Segmentation_semantic"],
+    choose = option_menu("IA de Segmentation et de Classification du COVID-19", ["A propos", "Classification", "Prediction covid-19 xray", "Segmentation_semantic"],
                          icons=['house', 'bi bi-graph-down-arrow',
                                 'bi bi-graph-down-arrow', 'house', 'house'],
                          menu_icon="app-indicator", default_index=0,
