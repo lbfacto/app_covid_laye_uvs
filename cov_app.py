@@ -41,7 +41,7 @@ page_bg_img = f"""
 
 [data-testid ="stAppViewContainer"] > .main {{
 background-image:url("https://www.unchk.sn/wp-content/uploads/2023/03/eno1.jpg");
-background-size :250%;
+background-size :;
 
 background-position: midle;
 background-repeat: no-repeat;
