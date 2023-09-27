@@ -13,14 +13,13 @@ import pandas as pd
 import io
 import cv2
 import webbrowser
-import streamlit_menu as men
 import streamlit as st
 import streamlit.components.v1 as components
 import base64
 import io
 from io import BytesIO
 import base64
-import mlflow
+# import mlflow
 import sys
 
 
@@ -34,37 +33,38 @@ def get_img_as_base64(file):
     return base64.b64encode(data).decode()
 
 
-img = get_img_as_base64("C:/convert/streamlit/img1.png")
+img = get_img_as_base64("C:\streamlit\img1.png")
 
 page_bg_img = f"""
 <style>
 
 [data-testid ="stAppViewContainer"] > .main {{
 background-image:url("https://www.unchk.sn/wp-content/uploads/2023/03/eno1.jpg");
-background-size :;
+background-size :250%;
 
-background-position: midle;
-background-repeat: no-repeat;
+background-position: auto;
+background-repeat: y-repeat;
 background-attachment: local;
 }}
 
 [data-testid="stSidebar"] > div:first-child {{
 background-image: url("data:image/png;base64,{img}");
 
-background-position: left;
-background-repeat: no-repeat;
+background-position: auto;
+background-repeat: y-repeat;
 background-attachment: fixed;
-    text-align: left;
+    text-align: auto;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 110%;
+    higth: 700px
+    width: 120%;
 }}
 [data-testid="stHeader"] {{
 background: rgba(0,0,0,0);
 }}
 [data-testid="stToolbar"] {{
-right: 3rem;
+right: 5rem;
 }}
 </style>
 """
@@ -77,21 +77,21 @@ st.sidebar.header("MENU")
 
 
 url = 'https://www.gmail.com/'
-logo = Image.open(r'C:/Users/dell/Desktop/logoUvs/uvs.JPEG')
+logo = Image.open(r'C:\streamlit\uvs_log.PNG')
 with st.sidebar:
     choose = option_menu("IA de Segmentation et de Classification du COVID-19", ["A propos", "Classification", "Prediction covid-19 xray", "Segmentation_semantic"],
                          icons=['house', 'bi bi-graph-down-arrow',
                                 'bi bi-graph-down-arrow', 'house', 'house'],
                          menu_icon="app-indicator", default_index=0,
                          styles={
-        "container": {"padding": "15!important", "background-color": "#b36b00"},
+        "container": {"padding": "30!important", "background-color": "#b36b00"},
         "icon": {"color": "blue", "font-size": "25px"},
         "nav-link": {"font-size": "10px", "text-align": "left", "margin": "0px", "--hover-color": "orange"},
         "nav-link-selected": {"background-color": "#4FC031"},
     }
     )
 
-profile = Image.open(r'C:/Users/dell/Desktop/logoUvs/uvs.JPEG')
+profile = Image.open(r'C:\streamlit\uvs_log.PNG')
 url = 'https://www.gmail.com/'
 if (choose == "A propos"):
     col1, col2 = st.columns([0.8, 0.2])
@@ -113,12 +113,11 @@ elif (choose == "Classification"):
     # Start mlflow
     # mlflow.set_tracking_uri(f"http://127.0.0.1:5000")
     seg_model = tf.keras.models.load_model(
-        'C:/convert/streamlit/model_final3classes/model_unet.h5', compile=True)
+        'C:\streamlit\model_final3classes\model_unet.h5', compile=True)
 
     # Charger le modèle de classification DenseNet121
     class_model = tf.keras.models.load_model(
         'C:\streamlit\model\model_uvs_1.h5')
-
 
     @st.cache_data
     # Fonction pour segmenter les zones d'intérêt avec UNet
@@ -186,7 +185,7 @@ elif (choose == "Prediction covid-19 xray"):
 # titre de l
 
     model = tf.keras.models.load_model(
-        'C:\convert\streamlit/vgg_chest.h5', compile=False)
+        'C:/streamlit/vgg_chest.h5', compile=False)
 
 
 # Définition de la fonction de prédiction
@@ -267,7 +266,7 @@ elif (choose == "Segmentation_semantic"):
     st.title("Segmenatation d'image Thoraciques et détection des zone d'ineteret COVID-19 sur des radiographies pulmonaires")
 
     model = tf.keras.models.load_model(
-        'C:/convert/streamlit/model_unet.h5', compile=False)
+        'C:\streamlit\model_final3classes\model_unet.h5', compile=False)
 
     # Fonction de prédiction
 
