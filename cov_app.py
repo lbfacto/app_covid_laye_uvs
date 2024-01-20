@@ -3,22 +3,16 @@ import tensorflow as tf
 import numpy as np
 from PIL import Image
 import pickle
-import numpy as np
-import streamlit as st
 from streamlit_option_menu import option_menu
 import streamlit.components.v1 as html
 from PIL import Image
-import numpy as np
 import pandas as pd
-import io
 import cv2
 import webbrowser
-import streamlit as st
 import streamlit.components.v1 as components
 import base64
 import io
 from io import BytesIO
-import base64
 # import mlflow
 import sys
 
@@ -33,32 +27,36 @@ def get_img_as_base64(file):
     return base64.b64encode(data).decode()
 
 
-img = get_img_as_base64("C:/Users/papal/OneDrive/Bureau/streamlitapp/app_covid_laye_uvs/img1.png")
+#img = get_img_as_base64("D:/streamlitapp/app_covid_laye_uvs/img1.png")
 
 page_bg_img = f"""
 <style>
 
 [data-testid ="stAppViewContainer"] > .main {{
-background-image:url("https://www.unchk.sn/wp-content/uploads/2023/03/eno1.jpg");
-background-size :250%;
+background-image:url("https://media.istockphoto.com/id/1446965324/vector/black-and-white-3d-illustration-related-to-medicines-use-circles-coming-out-of-pill-capsule.jpg?s=612x612&w=0&k=20&c=9uyYBGj_3DoOFrkZqWclSb1rvuONu1NZCt7UtZrVHRw=");
+background-size 150%;
 
 background-position: auto;
-background-repeat: y-repeat;
+
 background-attachment: local;
 }}
 
 [data-testid="stSidebar"] > div:first-child {{
-background-image: url("data:image/png;base64,{img}");
+background-image:url("https://i.pinimg.com/736x/d4/05/55/d405555eb81ce6c883ca7eee76b487a5.jpg");
+
 
 background-position: auto;
 background-repeat: y-repeat;
-background-attachment: fixed;
-    text-align: auto;
+
+background-repeat: x-repeat;
+
+background-attachment: local;
+    text-align: right;
     display: block;
     margin-left: auto;
     margin-right: auto;
     higth: 700px
-    width: 120%;
+    width: 250%;
 }}
 [data-testid="stHeader"] {{
 background: rgba(0,0,0,0);
@@ -77,16 +75,16 @@ st.sidebar.header("MENU")
 
 
 url = 'https://www.gmail.com/'
-logo = Image.open(r'C:/Users/papal/OneDrive/Bureau/streamlitapp/app_covid_laye_uvs/uvs_log.PNG')
+logo = Image.open(r'D:\streamlitapp\app_covid_laye_uvs\uvs_log.PNG')
 with st.sidebar:
-    choose = option_menu("IA de Segmentation et de Classification du COVID-19", ["A propos", "Classification", "Prediction covid-19 xray", "Segmentation_semantic"],
-                         icons=['house', 'bi bi-graph-down-arrow',
-                                'bi bi-graph-down-arrow', 'house', 'house'],
+    choose = option_menu("IA de Segmentation et de Classification du COVID-19", ["A propos", "Classification", "Segmentation"],
+                         icons=['bi bi-person-vcard', 'bi bi-lungs',
+                                'bi bi-lungs-fill'],
                          menu_icon="app-indicator", default_index=0,
                          styles={
-        "container": {"padding": "30!important", "background-color": "#b36b00"},
-        "icon": {"color": "blue", "font-size": "25px"},
-        "nav-link": {"font-size": "10px", "text-align": "left", "margin": "0px", "--hover-color": "orange"},
+        "container": {"padding": "15!important", "background-color": "#b36b00"},
+        "icon": {"color": "white", "font-size": "40px"},
+        "nav-link": {"font-size": "15px", "text-align": "left", "margin": "0px", "--hover-color": "orange"},
         "nav-link-selected": {"background-color": "#4FC031"},
     }
     )
@@ -113,11 +111,11 @@ elif (choose == "Classification"):
     # Start mlflow
     # mlflow.set_tracking_uri(f"http://127.0.0.1:5000")
     seg_model = tf.keras.models.load_model(
-        'app_covid_laye_uvs\model_unet.h5', compile=True)
+        'D:/streamlitapp/app_covid_laye_uvs/model_unet.h5', compile=True)
 
     # Charger le modèle de classification DenseNet121
     class_model = tf.keras.models.load_model(
-        'app_covid_laye_uvs\model_uvs_1.h5')
+        'D:/streamlitapp/app_covid_laye_uvs/model_uvs_1.h5')
 
     @st.cache_data
     # Fonction pour segmenter les zones d'intérêt avec UNet
@@ -262,11 +260,11 @@ elif (choose == "Prediction-ctglobal"):
         # st.write("Prédiction : COVID-19")
         # else:
         # st.write("Prédiction : Non COVID-19")
-elif (choose == "Segmentation_semantic"):
+elif (choose == "Segmentation"):
     st.title("Segmenatation d'image Thoraciques et détection des zone d'ineteret COVID-19 sur des radiographies pulmonaires")
 
     model = tf.keras.models.load_model(
-        'C:\streamlit\model_final3classes\model_unet.h5', compile=False)
+        'D:/streamlitapp/app_covid_laye_uvs/model_unet.h5', compile=False)
 
     # Fonction de prédiction
 
@@ -332,7 +330,7 @@ elif (choose == "Segmentation_semantic"):
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
         # st.image(image, caption='Image d\'entrée', use_column_width=True)
-        st.image(image, caption='Image téléchargée', use_column_width=True)
+        #st.image(image, "caption='Image téléchargée'", use_column_width=True)
         predict_button = st.button("Segmenter", key="segment_button")
 
         if predict_button:
