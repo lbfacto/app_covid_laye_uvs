@@ -33,7 +33,7 @@ def get_img_as_base64(file):
     return base64.b64encode(data).decode()
 
 
-img = get_img_as_base64("C:\streamlit\img1.png")
+img = get_img_as_base64("C:/Users/papal/OneDrive/Bureau/streamlitapp/app_covid_laye_uvs/img1.png")
 
 page_bg_img = f"""
 <style>
@@ -77,7 +77,7 @@ st.sidebar.header("MENU")
 
 
 url = 'https://www.gmail.com/'
-logo = Image.open(r'C:\streamlit\uvs_log.PNG')
+logo = Image.open(r'C:/Users/papal/OneDrive/Bureau/streamlitapp/app_covid_laye_uvs/uvs_log.PNG')
 with st.sidebar:
     choose = option_menu("IA de Segmentation et de Classification du COVID-19", ["A propos", "Classification", "Prediction covid-19 xray", "Segmentation_semantic"],
                          icons=['house', 'bi bi-graph-down-arrow',
@@ -91,7 +91,7 @@ with st.sidebar:
     }
     )
 
-profile = Image.open(r'C:\streamlit\uvs_log.PNG')
+#profile = Image.open(r'C:\streamlit\uvs_log.PNG')
 url = 'https://www.gmail.com/'
 if (choose == "A propos"):
     col1, col2 = st.columns([0.8, 0.2])
@@ -106,18 +106,18 @@ if (choose == "A propos"):
         st.image(logo, width=10)
 
     st.write("Abdoulaye BA MASTER 2 BIG DATA ANALYTICS Univetsite Numerique cheikh Amadou KANE de Dakar. Memoire de deep learning applique sur des images thoraciques de covid-19 le lien du repos sur github est disponibles sur ce lien: https://github.com/lbfacto metric sur tensorboard dev des accurance https://tensorboard.dev/experiment/dy6HW7GURH2pSXBpzwtx1w/#histograms&run=20230506-032808%2Ftrain")
-    st.image(profile, width=100)
+    #st.image(profile, width=100)
 
 elif (choose == "Classification"):
     # st.title("Predictioon du covid-19 sur des images tomographioque des poumons")
     # Start mlflow
     # mlflow.set_tracking_uri(f"http://127.0.0.1:5000")
     seg_model = tf.keras.models.load_model(
-        'C:\streamlit\model_final3classes\model_unet.h5', compile=True)
+        'app_covid_laye_uvs\model_unet.h5', compile=True)
 
     # Charger le modèle de classification DenseNet121
     class_model = tf.keras.models.load_model(
-        'C:\streamlit\model\model_uvs_1.h5')
+        'app_covid_laye_uvs\model_uvs_1.h5')
 
     @st.cache_data
     # Fonction pour segmenter les zones d'intérêt avec UNet
