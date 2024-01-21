@@ -76,3 +76,4 @@ if uploaded_file is not None:
     # Afficher l'image segmentée avec les contours infectés et la classe prédite
     st.image(segmented_img, caption=f"Classe : {class_label}", use_column_width=True)
     st.write(f"Pourcentage de zone infectée : {infected_percent:.2f}%")
+ 

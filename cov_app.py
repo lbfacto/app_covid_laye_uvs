@@ -101,7 +101,8 @@ if (choose == "A propos"):
     </style> """, unsafe_allow_html=True)
         st.markdown('<p class="font">A propos du createur</p>',
                     unsafe_allow_html=True)
-    with col2:               # To display brand log
+    with col2:       
+                # To display brand log
         st.image(logo, width=10)
 
     st.write("Abdoulaye BA MASTER 2 BIG DATA ANALYTICS Univetsite Numerique cheikh Amadou KANE de Dakar. Memoire de deep learning applique sur des images thoraciques de covid-19 le lien du repos sur github est disponibles sur ce lien: https://github.com/lbfacto metric sur tensorboard dev des accurance https://tensorboard.dev/experiment/dy6HW7GURH2pSXBpzwtx1w/#histograms&run=20230506-032808%2Ftrain")
@@ -330,7 +331,7 @@ elif (choose == "Segmentation"):
 
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
-        # st.image(image, caption='Image d\'entrée', use_column_width=True)
+        #st.image(image, caption='Image d\'entrée', use_column_width=True)
         #st.image(image, "caption='Image téléchargée'", use_column_width=True)
         predict_button = st.button("Segmenter", key="segment_button")
 
