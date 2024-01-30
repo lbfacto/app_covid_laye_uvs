@@ -9,6 +9,6 @@ RUN ls
 RUN python -m venv envcov
 RUN pip install -r requirements.txt
 
-EXPOSE 3000
+EXPOSE 3535
 
 CMD ["streamlit", "run", "cov_app.py"]
