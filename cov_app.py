@@ -34,7 +34,7 @@ page_bg_img = f"""
 <style>
 
 [data-testid ="stAppViewContainer"] > .main {{
-background-image:url("https://media.istockphoto.com/id/1446965324/vector/black-and-white-3d-illustration-related-to-medicines-use-circles-coming-out-of-pill-capsule.jpg?s=612x612&w=0&k=20&c=9uyYBGj_3DoOFrkZqWclSb1rvuONu1NZCt7UtZrVHRw=");
+background-image:url("https://t3.ftcdn.net/jpg/03/36/41/02/360_F_336410293_ckF5mnqpkaqI3ExTxmLl05IP1QqNsLkL.jpg");
 background-size 150%;
 
 background-position: auto;
@@ -43,7 +43,7 @@ background-attachment: local;
 }}
 
 [data-testid="stSidebar"] > div:first-child {{
-background-image:url("https://i.pinimg.com/736x/d4/05/55/d405555eb81ce6c883ca7eee76b487a5.jpg");
+background-image:url("https://img.freepik.com/premium-photo/coronavirus-infection-with-copy-space_23-2148473749.jpg");
 
 
 background-position: auto;
@@ -76,14 +76,14 @@ st.sidebar.header("MENU")
 
 
 url = 'https://www.gmail.com/'
-logo = Image.open(r'D:\streamlitapp\app_covid_laye_uvs\uvs_log.PNG')
+logo = Image.open(r'E:\app_cov\app_covid_laye_uvs\eno1.jpg')
 with st.sidebar:
     choose = option_menu("IA de Segmentation et de Classification du COVID-19", ["A propos", "Classification", "Segmentation"],
                          icons=['bi bi-person-vcard', 'bi bi-lungs',
                                 'bi bi-lungs-fill'],
                          menu_icon="app-indicator", default_index=0,
                          styles={
-        "container": {"padding": "15!important", "background-color": "#b36b00"},
+        "container": {"padding": "15!important", "background-color": "red"},
         "icon": {"color": "white", "font-size": "40px"},
         "nav-link": {"font-size": "15px", "text-align": "left", "margin": "0px", "--hover-color": "orange"},
         "nav-link-selected": {"background-color": "#4FC031"},
@@ -97,14 +97,13 @@ if (choose == "A propos"):
 
     with col1:               # To display the header text using css style
         st.markdown(""" <style> .font {
-    font-size: 25px ; font-family: 'Cooper green'; color: green}
+    font-size: 25px ; font-family: 'Cooper green'; color: blue}
     </style> """, unsafe_allow_html=True)
         st.markdown('<p class="font">A propos du createur</p>',
                     unsafe_allow_html=True)
     with col2:       
                 # To display brand log
         st.image(logo, width=10)
-
     st.write("Abdoulaye BA MASTER 2 BIG DATA ANALYTICS Univetsite Numerique cheikh Amadou KANE de Dakar. Memoire de deep learning applique sur des images thoraciques de covid-19 le lien du repos sur github est disponibles sur ce lien: https://github.com/lbfacto metric sur tensorboard dev des accurance https://tensorboard.dev/experiment/dy6HW7GURH2pSXBpzwtx1w/#histograms&run=20230506-032808%2Ftrain")
     #st.image(profile, width=100)
 
@@ -112,12 +111,10 @@ elif (choose == "Classification"):
     # st.title("Predictioon du covid-19 sur des images tomographioque des poumons")
     # Start mlflow
     # mlflow.set_tracking_uri(f"http://127.0.0.1:5000")
-    seg_model = tf.keras.models.load_model(
-        'D:/streamlitapp/app_covid_laye_uvs/model_unet.h5', compile=True)
+    seg_model = tf.keras.models.load_model('E:/app_cov/app_covid_laye_uvs\model_unet.h5')
 
     # Charger le modèle de classification DenseNet121
-    class_model = tf.keras.models.load_model(
-        'D:/streamlitapp/app_covid_laye_uvs/model_uvs_1.h5')
+    class_model = tf.keras.models.load_model('E:/app_cov/app_covid_laye_uvs\model_uvs_1.h5')
 
     @st.cache_data
     # Fonction pour segmenter les zones d'intérêt avec UNet
@@ -164,19 +161,18 @@ elif (choose == "Classification"):
         pneumonia_prob = class_pred[0][1] * 100 if class_pred[0][1] else 0
         normal_prob = class_pred[0][0] * 100
         # Segmenter les zones d'intérêt avec UNet
-        mask = segment_image(img)
+        #mask = segment_image(img)
 
         # Mettre en évidence les zones d'intérêt sur l'image
-        highlighted_img = highlight_regions(img, mask, (255, 0, 0) if class_idx == 2 else (
-            0, 0, 255) if class_idx == 1 else (0, 255, 0))
+       #"highlighted_img = highlight_regions(img, mask, (255, 0, 0) if class_idx == 2 else (0, 0, 255) if class_idx == 1 else (0, 255, 0))"
 
         # Afficher les résultats
         st.write(f"Classe prédite : {class_label}")
         st.write(f"Pourcentage de COVID-19 : {covid_prob:.2f}%")
         st.write(f"Pourcentage de pneumonie : {pneumonia_prob:.2f}%")
         st.write(f"Pourcentage de normalité : {normal_prob:.2f}%")
-        st.image([img, highlighted_img], caption=[
-                 "Image radiologique", "Zones d'intérêt"], width=300)
+        st.image([img], caption=[
+                  "Prediction"], width=300)
 
     # titre de l
 
@@ -265,8 +261,7 @@ elif (choose == "Prediction-ctglobal"):
 elif (choose == "Segmentation"):
     st.title("Segmenatation d'image Thoraciques et détection des zone d'ineteret COVID-19 sur des radiographies pulmonaires")
 
-    model = tf.keras.models.load_model(
-        'D:/streamlitapp/app_covid_laye_uvs/model_unet.h5', compile=False)
+    model = tf.keras.models.load_model('E:/app_cov/app_covid_laye_uvs/model_unet.h5')
 
     # Fonction de prédiction
 

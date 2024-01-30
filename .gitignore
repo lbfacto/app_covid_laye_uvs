@@ -1,6 +1,7 @@
 mlruns
 .venv
 __pycache__
+.devcontainer
 .vscode
 envcov
 app.py
@@ -14,7 +15,9 @@ covid_256_xray.h5
 covid.h5
 index.js
 model_vgg_chest.h5
-
+envcov
+model
+model_final3classes
 test_02.py
 test_xray.py
 test_ct.py
@@ -30,7 +33,6 @@ im10.jpg
 im1.jpg
 image_de_fond_covid.webp
 C:\streamlit\model_final3classes\modelXceptionUvs.h5
-
 coro
 style
 covenv

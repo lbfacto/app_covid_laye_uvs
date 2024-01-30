@@ -4,10 +4,10 @@ import cv2
 import numpy as np
 
 # Charger le modèle de segmentation UNet
-seg_model = tf.keras.models.load_model('C:/convert/streamlit/model_final3classes/model_unet.h5')
+seg_model = tf.keras.models.load_model('app_covid_laye_uvs/model_unet.h5')
 
 # Charger le modèle de classification DenseNet121
-class_model = tf.keras.models.load_model('C:/convert/streamlit/model_final3classes/modelXceptionUvs.h5')
+#class_model = tf.keras.models.load_model('C:/convert/streamlit/model_final3classes/modelXceptionUvs.h5')
 
 # Fonction pour segmenter les zones d'intérêt avec UNet
 def segment_image(image):
