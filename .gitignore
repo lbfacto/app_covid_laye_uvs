@@ -22,6 +22,7 @@ test_02.py
 test_xray.py
 test_ct.py
 uvs_model_final.h5
+covenv
 uvs_laye_memo12.h5
 vgg_chest.h5
 vgg_ct.h5
@@ -35,4 +36,3 @@ image_de_fond_covid.webp
 C:\streamlit\model_final3classes\modelXceptionUvs.h5
 coro
 style
-covenv

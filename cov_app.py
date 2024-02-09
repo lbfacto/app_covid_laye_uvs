@@ -34,7 +34,7 @@ page_bg_img = f"""
 <style>
 
 [data-testid ="stAppViewContainer"] > .main {{
-background-image:url("https://t3.ftcdn.net/jpg/03/36/41/02/360_F_336410293_ckF5mnqpkaqI3ExTxmLl05IP1QqNsLkL.jpg");
+background-image:url("https://d2jx2rerrg6sh3.cloudfront.net/images/news/ImageForNews_721677_1659955080675855.jpg");
 background-size 150%;
 
 background-position: auto;
@@ -43,13 +43,13 @@ background-attachment: local;
 }}
 
 [data-testid="stSidebar"] > div:first-child {{
-background-image:url("https://img.freepik.com/premium-photo/coronavirus-infection-with-copy-space_23-2148473749.jpg");
+background-image:url("https://media.istockphoto.com/id/1297985631/photo/corona-virus-covid-19-illustration.jpg?s=612x612&w=0&k=20&c=lI_Mlnnv0tItBnGv3Mcjm57AwLVcP5Qsu-vfvBN3iI0=");
 
 
 background-position: auto;
-background-repeat: y-repeat;
+""background-repeat: y-repeat;""
 
-background-repeat: x-repeat;
+""background-repeat: x-repeat;""
 
 background-attachment: local;
     text-align: right;
@@ -76,7 +76,7 @@ st.sidebar.header("MENU")
 
 
 url = 'https://www.gmail.com/'
-logo = Image.open(r'E:\app_cov\app_covid_laye_uvs\eno1.jpg')
+logo = Image.open(r'E:/app_cov/app_covid_segmentation/eno1.jpg')
 with st.sidebar:
     choose = option_menu("IA de Segmentation et de Classification du COVID-19", ["A propos", "Classification", "Segmentation"],
                          icons=['bi bi-person-vcard', 'bi bi-lungs',
@@ -111,10 +111,10 @@ elif (choose == "Classification"):
     # st.title("Predictioon du covid-19 sur des images tomographioque des poumons")
     # Start mlflow
     # mlflow.set_tracking_uri(f"http://127.0.0.1:5000")
-    seg_model = tf.keras.models.load_model('E:/app_cov/app_covid_laye_uvs\model_unet.h5')
+    seg_model = tf.keras.models.load_model('E:/app_cov/app_covid_segmentation/model_unet.h5')
 
     # Charger le modèle de classification DenseNet121
-    class_model = tf.keras.models.load_model('E:/app_cov/app_covid_laye_uvs\model_uvs_1.h5')
+    class_model = tf.keras.models.load_model('E:/app_cov/app_covid_segmentation/model_uvs_1.h5')
 
     @st.cache_data
     # Fonction pour segmenter les zones d'intérêt avec UNet
@@ -164,7 +164,8 @@ elif (choose == "Classification"):
         #mask = segment_image(img)
 
         # Mettre en évidence les zones d'intérêt sur l'image
-       #"highlighted_img = highlight_regions(img, mask, (255, 0, 0) if class_idx == 2 else (0, 0, 255) if class_idx == 1 else (0, 255, 0))"
+        #highlighted_img = highlight_regions(img, "mask", (255, 0, 0) if class_idx == 2 else (
+            #0, 0, 255) if class_idx == 1 else (0, 255, 0))
 
         # Afficher les résultats
         st.write(f"Classe prédite : {class_label}")
@@ -172,7 +173,7 @@ elif (choose == "Classification"):
         st.write(f"Pourcentage de pneumonie : {pneumonia_prob:.2f}%")
         st.write(f"Pourcentage de normalité : {normal_prob:.2f}%")
         st.image([img], caption=[
-                  "Prediction"], width=300)
+                 "Image radiologique"], width=300)
 
     # titre de l
 
@@ -261,7 +262,7 @@ elif (choose == "Prediction-ctglobal"):
 elif (choose == "Segmentation"):
     st.title("Segmenatation d'image Thoraciques et détection des zone d'ineteret COVID-19 sur des radiographies pulmonaires")
 
-    model = tf.keras.models.load_model('E:/app_cov/app_covid_laye_uvs/model_unet.h5')
+    model = tf.keras.models.load_model('E:/app_cov/app_covid_segmentation/model_unet.h5')
 
     # Fonction de prédiction
 
@@ -322,7 +323,7 @@ elif (choose == "Segmentation"):
     # Interface utilisateur Streamlit
 
     uploaded_file = st.file_uploader(
-        "Choisir une image de radiographie pulmonaire", type=["jpg", "jpeg", "png"])
+        "Choisir une image de radiographie pulmonaire", type=["jpg", "JPEG", "png"])
 
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
